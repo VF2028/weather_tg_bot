@@ -1,0 +1,61 @@
+2024-12-25 18:45:29,975 - INFO - Start polling
+2024-12-25 18:45:30,010 - INFO - Run polling for bot @vaf_project_bot id=8058555773 - 'Weather bot'
+2024-12-25 18:45:30,198 - INFO - Update id=878663473 is handled. Duration 134 ms by bot id=8058555773
+2024-12-25 18:45:34,782 - INFO - Update id=878663474 is handled. Duration 492 ms by bot id=8058555773
+2024-12-25 18:45:38,562 - INFO - Update id=878663475 is handled. Duration 61 ms by bot id=8058555773
+2024-12-25 18:45:41,455 - INFO - Update id=878663476 is handled. Duration 179 ms by bot id=8058555773
+2024-12-25 18:45:44,802 - INFO - Update id=878663477 is handled. Duration 1287 ms by bot id=8058555773
+2024-12-25 18:46:31,806 - INFO - Update id=878663478 is handled. Duration 115 ms by bot id=8058555773
+2024-12-25 18:46:35,387 - INFO - Update id=878663479 is handled. Duration 46 ms by bot id=8058555773
+2024-12-25 18:46:37,100 - INFO - Update id=878663480 is handled. Duration 81 ms by bot id=8058555773
+2024-12-25 18:46:39,049 - INFO - Update id=878663481 is handled. Duration 64 ms by bot id=8058555773
+2024-12-25 18:46:41,938 - INFO - Update id=878663482 is handled. Duration 365 ms by bot id=8058555773
+2024-12-25 18:50:39,326 - INFO - Update id=878663483 is not handled. Duration 0 ms by bot id=8058555773
+2024-12-25 18:51:46,441 - INFO - Update id=878663484 is handled. Duration 31 ms by bot id=8058555773
+2024-12-25 18:51:50,183 - INFO - Update id=878663485 is handled. Duration 126 ms by bot id=8058555773
+2024-12-25 18:51:54,194 - INFO - Update id=878663486 is handled. Duration 107 ms by bot id=8058555773
+2024-12-25 18:51:57,191 - INFO - Update id=878663487 is handled. Duration 90 ms by bot id=8058555773
+2024-12-25 18:51:59,757 - INFO - Update id=878663488 is handled. Duration 544 ms by bot id=8058555773
+2024-12-25 18:52:54,195 - INFO - Start polling
+2024-12-25 18:52:54,228 - INFO - Run polling for bot @vaf_project_bot id=8058555773 - 'Weather bot'
+2024-12-25 18:53:05,475 - INFO - Update id=878663489 is handled. Duration 172 ms by bot id=8058555773
+2024-12-25 18:53:08,899 - INFO - Update id=878663490 is handled. Duration 112 ms by bot id=8058555773
+2024-12-25 18:53:11,036 - INFO - Update id=878663491 is handled. Duration 114 ms by bot id=8058555773
+2024-12-25 18:53:12,482 - INFO - Update id=878663492 is handled. Duration 27 ms by bot id=8058555773
+2024-12-25 18:53:15,123 - INFO - Update id=878663493 is handled. Duration 43 ms by bot id=8058555773
+2024-12-25 18:53:31,503 - INFO - Update id=878663494 is not handled. Duration 0 ms by bot id=8058555773
+2024-12-25 18:55:05,476 - INFO - Start polling
+2024-12-25 18:55:05,520 - INFO - Run polling for bot @vaf_project_bot id=8058555773 - 'Weather bot'
+2024-12-25 18:55:14,316 - INFO - Update id=878663495 is handled. Duration 57 ms by bot id=8058555773
+2024-12-25 18:55:18,893 - INFO - Update id=878663496 is handled. Duration 183 ms by bot id=8058555773
+2024-12-25 18:55:20,483 - INFO - Update id=878663497 is handled. Duration 42 ms by bot id=8058555773
+2024-12-25 18:55:22,264 - INFO - Update id=878663498 is handled. Duration 30 ms by bot id=8058555773
+2024-12-25 18:55:25,746 - INFO - Update id=878663499 is handled. Duration 1151 ms by bot id=8058555773
+2024-12-25 18:55:50,490 - INFO - Update id=878663500 is not handled. Duration 0 ms by bot id=8058555773
+2024-12-25 18:55:58,935 - INFO - Update id=878663501 is not handled. Duration 0 ms by bot id=8058555773
+2024-12-25 19:02:18,015 - INFO - Start polling
+2024-12-25 19:02:18,044 - INFO - Run polling for bot @vaf_project_bot id=8058555773 - 'Weather bot'
+2024-12-25 19:02:31,536 - INFO - Update id=878663502 is handled. Duration 131 ms by bot id=8058555773
+2024-12-25 19:02:34,705 - INFO - Update id=878663503 is handled. Duration 103 ms by bot id=8058555773
+2024-12-25 19:02:36,281 - INFO - Update id=878663504 is handled. Duration 121 ms by bot id=8058555773
+2024-12-25 19:02:38,679 - INFO - Update id=878663505 is handled. Duration 140 ms by bot id=8058555773
+2024-12-25 19:02:46,724 - INFO - Update id=878663506 is handled. Duration 1157 ms by bot id=8058555773
+2024-12-25 19:06:02,269 - INFO - Start polling
+2024-12-25 19:06:02,323 - INFO - Run polling for bot @vaf_project_bot id=8058555773 - 'Weather bot'
+2024-12-25 19:06:08,621 - INFO - Update id=878663507 is handled. Duration 89 ms by bot id=8058555773
+2024-12-25 19:06:12,763 - INFO - Update id=878663508 is handled. Duration 34 ms by bot id=8058555773
+2024-12-25 19:06:14,188 - INFO - Update id=878663509 is handled. Duration 80 ms by bot id=8058555773
+2024-12-25 19:06:16,385 - INFO - Update id=878663510 is handled. Duration 52 ms by bot id=8058555773
+2024-12-25 19:06:21,412 - INFO - Update id=878663511 is handled. Duration 2712 ms by bot id=8058555773
+2024-12-25 19:22:29,850 - INFO - Start polling
+2024-12-25 19:22:29,885 - INFO - Run polling for bot @vaf_project_bot id=8058555773 - 'Weather bot'
+2024-12-25 19:22:40,389 - INFO - Update id=878663512 is handled. Duration 53 ms by bot id=8058555773
+2024-12-25 19:22:46,841 - INFO - Update id=878663513 is handled. Duration 28 ms by bot id=8058555773
+2024-12-25 19:22:50,733 - INFO - Update id=878663514 is handled. Duration 79 ms by bot id=8058555773
+2024-12-25 19:22:53,216 - INFO - Update id=878663515 is handled. Duration 26 ms by bot id=8058555773
+2024-12-25 19:22:57,611 - INFO - Update id=878663516 is handled. Duration 1212 ms by bot id=8058555773
+2024-12-25 19:23:13,979 - INFO - Update id=878663517 is handled. Duration 24 ms by bot id=8058555773
+2024-12-25 19:23:17,347 - INFO - Update id=878663518 is handled. Duration 39 ms by bot id=8058555773
+2024-12-25 19:23:19,853 - INFO - Update id=878663519 is handled. Duration 128 ms by bot id=8058555773
+2024-12-25 19:23:22,492 - INFO - Update id=878663520 is handled. Duration 26 ms by bot id=8058555773
+2024-12-25 19:23:25,461 - INFO - Update id=878663521 is handled. Duration 571 ms by bot id=8058555773
