@@ -9,6 +9,7 @@ from aiogram.fsm.state import State, StatesGroup
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 import asyncio
+import plotly.graph_objects as go
 
 # Настройка логирования
 logging.basicConfig(level=logging.INFO, filename='bot.log', filemode='a',
@@ -29,6 +30,34 @@ session = requests_cache.CachedSession('weather_cache', expire_after=3600)  # К
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
+
+
+def plot_weather_data(forecast, city):
+    dates = [day['date'] for day in forecast]
+    max_temps = [day['max_temperature'] for day in forecast]
+    min_temps = [day['min_temperature'] for day in forecast]
+
+    fig = go.Figure()
+
+    # Добавление линии максимальной температуры
+    fig.add_trace(go.Scatter(x=dates, y=max_temps, mode='lines+markers', name='Максимальная температура (°C)', line=dict(color='red')))
+    
+    # Добавление линии минимальной температуры
+    fig.add_trace(go.Scatter(x=dates, y=min_temps, mode='lines+markers', name='Минимальная температура (°C)', line=dict(color='blue')))
+
+    # Добавление области между максимальной и минимальной температурой
+    fig.add_trace(go.Scatter(x=dates, y=max_temps, mode='lines', showlegend=False, line=dict(width=0), fill='tonexty', fillcolor='rgba(255, 0, 0, 0.2)'))
+    
+    fig.update_layout(title=f'Прогноз температуры в {city.capitalize()}',
+                      xaxis_title='Дата',
+                      yaxis_title='Температура (°C)',
+                      xaxis_tickangle=-45)
+
+    # Сохранение графика в файл
+    file_path = f'{city}_weather_plot.png'
+    fig.write_image(file_path)
+
+    return file_path
 
 class WeatherStates(StatesGroup):
     start_city = State()
@@ -238,6 +267,12 @@ async def process_intermediate_cities(message: types.Message, state: FSMContext)
                 
                 weather_data = get_weather_data(lat, lon, days=days)
                 forecast = parse_weather_data(weather_data)
+                
+                # Если больше 1 дня то рисуем графики
+                if days > 1:
+                    # Создание и отправка графика
+                    plot_file = plot_weather_data(forecast, city)
+                    await message.answer_photo(types.FSInputFile(plot_file), caption=f'График погоды для {city.capitalize()}')
 
                 weather_report += f"Погода для города {city.capitalize()}:\n"
                 for day in forecast:
@@ -253,8 +288,7 @@ async def process_intermediate_cities(message: types.Message, state: FSMContext)
                 logging.error(f"Ошибка при получении данных для города '{city.capitalize()}': {str(e)}")
                 await message.answer(f"Ошибка при получении данных для города '{city.capitalize()}': {str(e)}")
 
-        
-       # Отправляем отчет о погоде пользователю
+        # Отправляем отчет о погоде пользователю
         if weather_report:
             await message.answer(f"Ваш маршрут: {route}\n\n{weather_report}")
         else:
