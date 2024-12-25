@@ -60,10 +60,11 @@ def plot_weather_data(forecast, city):
     return file_path
 
 class WeatherStates(StatesGroup):
+    days = State()
     start_city = State()
     end_city = State()
     intermediate_cities = State()
-    days = State()
+    
 
 # Функции для получения данных о погоде и координатах
 def get_coordinates(city_name):
@@ -135,7 +136,8 @@ def parse_weather_data(raw_data):
             "wind_speed_max": daily_data.get("windspeed_10m_max", [None])[i],
         })
     return forecast
-
+'''
+Один из вариантов при обработке выбора количества дней
 # Создание inline кнопок для выбора дней прогноза
 def create_days_buttons():
     keyboard = InlineKeyboardBuilder()
@@ -144,7 +146,7 @@ def create_days_buttons():
     keyboard.add(types.InlineKeyboardButton(text="5 дней", callback_data="5"))
     keyboard.add(types.InlineKeyboardButton(text="7 дней", callback_data="7"))
     return keyboard.as_markup()
-
+'''
 # Обработчик команды /start
 @dp.message(Command("start"))
 async def start_command(message: types.Message, state: FSMContext):
@@ -172,17 +174,28 @@ async def help_command(message: types.Message):
 # Обработчик команды /weather
 @dp.message(Command("weather"))
 async def weather_command(message: types.Message, state: FSMContext):
-    await message.answer("Введите начальный город:")
-    await state.set_state(WeatherStates.start_city)
+    await message.answer("Введите количество дней для прогноза:")
+    await state.set_state(WeatherStates.days)
 
 # Обработчик для выбора количества дней
-@dp.callback_query(lambda c: c.data in ["1", "3", "5", "7"])
-async def process_days_selection(callback_query: types.CallbackQuery, state: FSMContext):
-    days = int(callback_query.data)
-    await state.update_data(days=days)
-    await callback_query.answer(f"Вы выбрали {days} дня(ей) прогноза.")
-    await bot.send_message(callback_query.from_user.id, "Введите конечный город:")
-    await state.set_state(WeatherStates.end_city)
+@dp.message(WeatherStates.days)
+async def process_days_selection(message: types.Message, state: FSMContext):
+    days_input = message.text.strip()
+    
+    try:
+        days = int(days_input)  # Преобразование в целое число
+        if days <= 0:
+            raise ValueError("Количество дней должно быть положительным числом.")
+
+        # Сохраняем количество дней в состоянии
+        await state.update_data(days=days)
+
+        # Запрашиваем начальный город
+        await message.answer("Введите начальный город:")
+        await state.set_state(WeatherStates.start_city)
+
+    except ValueError as e:
+        await message.answer(f"Ошибка: {str(e)}. Попробуйте снова.")
 
 # Обработчик начального города
 @dp.message(WeatherStates.start_city)
@@ -195,8 +208,8 @@ async def process_start_city(message: types.Message, state: FSMContext):
             return
 
         await state.update_data(start_city=city_name)
-        await message.answer("Выберите, на сколько дней вы хотите получить прогноз погоды:", reply_markup=create_days_buttons())
-        await state.set_state(WeatherStates.days)
+        await message.answer("Введите конечный город:")
+        await state.set_state(WeatherStates.end_city)
     except ValueError as e:
         await message.answer(f"Ошибка: {str(e)}. Попробуйте снова.")
     except Exception as e:
@@ -272,16 +285,16 @@ async def process_intermediate_cities(message: types.Message, state: FSMContext)
                 if days > 1:
                     # Создание и отправка графика
                     plot_file = plot_weather_data(forecast, city)
-                    await message.answer_photo(types.FSInputFile(plot_file), caption=f'График погоды для {city.capitalize()}')
+                    await message.answer_photo(types.FSInputFile(plot_file), caption=f'**График погоды для {city.capitalize()}**', parse_mode="Markdown")
 
-                weather_report += f"Погода для города {city.capitalize()}:\n"
+                weather_report += f"**Погода для города {city.capitalize()}:**\n"
                 for day in forecast:
                     weather_report += (
-                        f"Дата: {day['date']}\n"
-                        f"Макс. температура: {day['max_temperature']}°C\n"
-                        f"Мин. температура: {day['min_temperature']}°C\n"
-                        f"Осадки: {day['precipitation_sum']} мм\n"
-                        f"Макс. скорость ветра: {day['wind_speed_max']} м/с\n\n"
+                        f"**Дата:** {day['date']}\n"
+                        f"**Макс. температура:** {day['max_temperature']}°C\n"
+                        f"**Мин. температура:** {day['min_temperature']}°C\n"
+                        f"**Осадки:** {day['precipitation_sum']} мм\n"
+                        f"**Макс. скорость ветра:** {day['wind_speed_max']} м/с\n\n"
                     )
                     
             except Exception as e:
@@ -290,7 +303,7 @@ async def process_intermediate_cities(message: types.Message, state: FSMContext)
 
         # Отправляем отчет о погоде пользователю
         if weather_report:
-            await message.answer(f"Ваш маршрут: {route}\n\n{weather_report}")
+            await message.answer(f'Ваш маршрут: {route}\n\n{weather_report}', parse_mode="Markdown")
         else:
             await message.answer(f"Не удалось получить данные о погоде для маршрута.")
 
