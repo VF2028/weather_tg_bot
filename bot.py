@@ -19,7 +19,7 @@ logging.basicConfig(level=logging.INFO, filename='bot.log', filemode='a',
 #BOT_TOKEN = os.getenv("BOT_TOKEN")
 #YANDEX_API_KEY = os.getenv("YANDEX_API_KEY") 
 
-BOT_TOKEN = "8058555773:AAF-iI3GRxcOymNpBBB4NMS578Qf-x-89Zc"
+BOT_TOKEN = ""
 YANDEX_API_KEY = "3a844ca2-91ee-405b-9170-6309f2afa83d"
 
 BASE_URL = "https://api.open-meteo.com/v1/forecast"
